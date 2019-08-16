@@ -1,0 +1,16 @@
+version: '2.1'
+volumes:
+  jupyter-settings:
+    driver: local
+
+services:
+  vs-code:
+    image: jacekplocharczyk/jupyter:latest
+    restart: always
+    ports:
+      - 8889:8889
+    volumes:
+      - /home/${USER}/projects/:/projects/
+      - /home/${USER}/.kaggle/:/root/.kaggle/
+      - jupyter-settings:/root/.jupyter/
+
