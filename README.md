@@ -11,5 +11,8 @@ To set-up everything you need execute the following step:
 ## Start the container
 To start run `docker-compose up -d` in the repo directory.
 
+## Access the jupyter-lab
+Jupyter-lab can be found under the following path http://localhost:8889/
+
 ## Stop the container
 To stop run `docker-compose down` in the repo directory.
