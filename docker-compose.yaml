@@ -4,7 +4,7 @@ volumes:
     driver: local
 
 services:
-  vs-code:
+  jupyter-lab:
     image: jacekplocharczyk/jupyter:latest
     restart: always
     ports:
