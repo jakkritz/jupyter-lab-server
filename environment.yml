@@ -1,14 +1,18 @@
 name: base
 channels:
-  - pytorch
-  - conda-forge
   - anaconda
+  - conda-forge
   - defaults
+  - pytorch
 dependencies:
-  - python=3.7
+  - black
+  - cudatoolkit=10.0
+  - flake8-black
   - jupyterlab
+  - jupyterlab_code_formatter
+  - nodejs
+  - pyglet
+  - python=3.7
   - pytorch
   - torchvision
-  - cudatoolkit=10.0
-  - pyglet
 prefix: /opt/conda

@@ -1,15 +1,18 @@
 # jupyter-lab-server
-Hi!  
-This is my personal environment for playing with ML/RL using jupyter-lab and anaconda.  
+This is my environment for playing with ML/RL using PyTorch, jupyter-lab, and Anaconda.
+It also includes CUDA 10.0.
+
+## What it contains
+This docker file has Anaconda installed with all packages from the `environmnet.yml` 
+and the `requrements.txt` files. 
 
 ## Requirements
 To set-up everything you need execute the following step:  
-1. Create projects directory: '/home/<your_username>/projects'
-
-### Kaggle configuration
-2. Download your kaggle API token - [instruction here](https://github.com/Kaggle/kaggle-api)
-3. Extract `kaggle.json` to '/home/<your_username>/.kaggle' directory and change permisions using
-   `chmod 600 ~/.kaggle/kaggle.json`
+1. Create projects directory: '/home/${USER}/projects'
+1. Configure your git - [add your name and email](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)
+   (docker requires `/home/${USER}/.gitconfig` directory)
+1. Configure your ssh key to use remote git services inside the container - [GitLab example](https://docs.gitlab.com/ee/ssh/)
+   (docker requires `/home/${USER}/.ssh` directory)
 
 ### CUDA configuration
 If you want to use your CUDA-capable GPU in computations:

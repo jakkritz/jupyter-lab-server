@@ -5,12 +5,13 @@ volumes:
 
 services:
   jupyter-lab:
-    image: jacekplocharczyk/jupyter:latest
+    image: jacekplocharczyk/jupyter:cpu
     restart: always
     ports:
       - 8889:8889
     volumes:
       - /home/${USER}/projects/:/projects/
       - /home/${USER}/.kaggle/:/root/.kaggle/
+      - /home/${USER}/.ssh:/root/.ssh
+      - /home/${USER}/.gitconfig:/root/.gitconfig
       - jupyter-settings:/root/.jupyter/
-
