@@ -5,7 +5,7 @@ volumes:
 
 services:
   jupyter-lab:
-    image: jacekplocharczyk/jupyter:cpu
+    image: jacekplocharczyk/jupyter:gpu
     restart: always
     ports:
       - 8889:8889
