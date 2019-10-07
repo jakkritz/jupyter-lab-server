@@ -23,7 +23,8 @@ If you want to use your CUDA-capable GPU in computations:
 
 ### SSL configuration
 To add SSL encryption you can use self-signed certificate as follows:
-0. ALL THE FOLLOWING STEPS ARE DONE INSIDE DOCKER CONTAINER!
+
+0. ALL THE FOLLOWING STEPS ARE DONE INSIDE THE DOCKER CONTAINER!
 1. Add password using `$ jupyter notebook password` command.
 2. In the `/root/.jupyter/` directory generate certficate:
    ```bash
