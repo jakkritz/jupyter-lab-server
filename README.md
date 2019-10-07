@@ -17,6 +17,34 @@ To set-up everything you need execute the following step:
 ### CUDA configuration
 If you want to use your CUDA-capable GPU in computations:
 1. Make sure you have the latest NVIDIA drivers
+2. Install `nvidia-container-toolkit`:
+    ```bash
+    # Add the package repositories
+    $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+    $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+    $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+  
+    $ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+    $ sudo systemctl restart docker
+    ```
+    If you use Ubuntu 19.04 use:
+    ```bash
+    # Add the package repositories
+    $ distribution="ubuntu18.04"
+    $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+    $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+  
+    $ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+    $ sudo systemctl restart docker   
+    ```
+
+    In case of `docker: Error response from daemon: Unknown runtime specified nvidia.` run:
+    ```bash
+    $ sudo systemctl daemon-reload
+    $ sudo systemctl restart docker
+    ```
+
+
 2. Run `set_up_gpu.sh` to set up local storage for the jupyter configuration  
    (docker-compose isn't compatible with using GPUs inside the docker container)
 
