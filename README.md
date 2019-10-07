@@ -20,6 +20,25 @@ If you want to use your CUDA-capable GPU in computations:
 2. Run `set_up_gpu.sh` to set up local storage for the jupyter configuration  
    (docker-compose isn't compatible with using GPUs inside the docker container)
 
+
+### SSL configuration
+To add SSL encryption you can use self-signed certificate as follows:
+0. ALL THE FOLLOWING STEPS ARE DONE INSIDE DOCKER CONTAINER!
+1. Add password using `$ jupyter notebook password` command.
+2. In the `/root/.jupyter/` directory generate certficate:
+   ```bash
+   openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout mykey.key -out mycert.pem
+   ```
+3. Add following lines to the `/root/.jupyter/jupyter_notebook_config.json` file:
+   ```
+   "NotebookApp": {
+     "certfile": "/root/.jupyter/mycert.pem",
+     "keyfile": "/root/.jupyter/mykey.key"
+   }
+   ```
+
+Everything will be perserved because of the jupyter `jupyter-gpu-config` volume.
+
 ## Start the container
 To start run `docker-compose up -d` in the repo directory. (Non-CUDA Version)  
 
