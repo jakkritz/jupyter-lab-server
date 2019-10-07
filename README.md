@@ -16,7 +16,7 @@ To set-up everything you need execute the following step:
 
 ### CUDA configuration
 If you want to use your CUDA-capable GPU in computations:
-1. Make sure you have the latest NVIDIA drivers
+1. Make sure you have the latest NVIDIA drivers and Docker 19.03 or higher.
 2. Install `nvidia-container-toolkit`:
     ```bash
     # Add the package repositories
