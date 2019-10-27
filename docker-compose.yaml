@@ -15,8 +15,16 @@ services:
       dockerfile: Dockerfile
     restart: always
     volumes:
-      - /home/${USER}/Desktop/jupyter-lab-server/:/projects/
+      - /home/${USER}/Desktop/jupyter-lab-server/fastai/nbs/dl1:/projects/fastai/dl1
       - /home/${USER}/.kaggle/:/root/.kaggle/
       - /home/${USER}/.ssh:/root/.ssh
       - /home/${USER}/.gitconfig:/root/.gitconfig
       - jupyter-settings:/root/.jupyter/
+    networks:
+      - "traefik_proxy"
+    labels:
+       - "traefik.enable=true"
+       - "traefik.backend=jupyter-lab"
+       - "traefik.docker.network=traefik_proxy"
+       - "traefik.frontend.rule=Host:jupyter.localhost"
+       - "traefik.odoo.port=8889"
