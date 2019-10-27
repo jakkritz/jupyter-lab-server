@@ -1,16 +1,21 @@
 version: '2.1'
+
 volumes:
   jupyter-settings:
     driver: local
 
+networks:
+  traefik_proxy:
+    external: true
+
 services:
   jupyter-lab:
-    image: jacekplocharczyk/jupyter:gpu
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
-    ports:
-      - 8889:8889
     volumes:
-      - /home/${USER}/projects/:/projects/
+      - /home/${USER}/Desktop/jupyter-lab-server/:/projects/
       - /home/${USER}/.kaggle/:/root/.kaggle/
       - /home/${USER}/.ssh:/root/.ssh
       - /home/${USER}/.gitconfig:/root/.gitconfig
