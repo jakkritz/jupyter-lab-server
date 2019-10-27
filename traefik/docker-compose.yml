@@ -1,0 +1,35 @@
+version: "3.6"
+
+services:
+  traefik:
+    hostname: traefik
+    image: traefik:v1.7.16
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.frontend.rule=Host:monitor.ppsmartproduct.com"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik_proxy"
+      - "traefik.frontend.headers.SSLRedirect=true"
+      - "traefik.frontend.headers.STSSeconds=315360000"
+      - "traefik.frontend.headers.browserXSSFilter=true"
+      - "traefik.frontend.headers.contentTypeNosniff=true"
+      - "traefik.frontend.headers.forceSTSHeader=true"
+      - "traefik.frontend.headers.sslhost=ppsmartproduct.com"
+      - "traefik.frontend.headers.STSIncludeSubdomains=true"
+      - "traefik.frontend.headers.STSPreload=true"
+      - "traefik.frontend.headers.frameDeny=true"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.toml:/traefik.toml
+      - ./acme.json:/acme.json
+networks:
+  traefik_proxy:
+    external: true

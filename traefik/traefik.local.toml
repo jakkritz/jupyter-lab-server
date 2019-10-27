@@ -1,0 +1,26 @@
+debug = true
+
+logLevel = "INFO" #DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+InsecureSkipVerify = true
+defaultEntryPoints = ["https", "http"]
+
+[api]
+  entryPoint = "traefik"
+  dashboard = true
+  address = ":8080"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.https]
+  address = ":443"
+   
+# Connection to docker host system (docker.sock)
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "jupyter.localhost"
+watch = true
+# This will hide all docker containers that don't have explicitly  
+# set label to "enable"
+exposedbydefault = true
+network = "traefik_proxy"

@@ -1,0 +1,25 @@
+version: "3.6"
+
+services:
+  traefik:
+    hostname: traefik
+    image: traefik:v1.7.16
+    container_name: traefik
+    restart: unless-stopped
+    networks:
+      - traefik_proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.backend=traefik"
+      - "traefik.frontend.rule=Host:monitor.jupyter.localhost"
+      - "traefik.port=8080"
+      - "traefik.docker.network=traefik_proxy"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./traefik.local.toml:/traefik.toml
+networks:
+  traefik_proxy:
+    external: true

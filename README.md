@@ -1,3 +1,39 @@
+# JupyterLab PyTorch FastAI (GPU) with Traefik Reverse Proxy
+#### This repos is referenced from [url](https://github.com/jacekplocharczyk/jupyter-lab-server)
+
+1. Start traefik on localhost
+```cd traefik```
+```docker network create traefik_proxy```
+```docker-compose -f docker-compose-local.yml up -d```
+```docker volume create jupyter-gpu-config```
+or create volume by running
+```./set_up_gpu.sh```
+
+2. Build (or pull image from [DockerHub](https://hub.docker.com/r/ppsmart/jupyterlab-torch-fastai))
+```docker-compose up -d```
+- Note that Dockerfile is using 'th' mirror, change accordingly
+- ``` RUN sed --in-place --regexp-extended "s/(\/\/)(archive\.ubuntu)/\1th.\2/" /etc/apt/sources.list && \
+     apt-get update && apt-get upgrade --yes
+```
+
+3. Clone [fastai repo](https://github.com/Paperspace/fastai-docker/tree/master/fastai-v3)
+
+4. Run JupyterLab by
+```http://jupyter.localhost```
+
+5. To run on CUDA, use docker command (as opposed to docker-compose)
+```./run_on_gpu.sh
+# change directory as needed
+```
+- access JupyterLab by
+- ```http://localhost:8889```
+
+6. Dirty trust noteboks
+- docker-compose
+- ```docker-compose exec jupyter-lab bash; jupyter trust *.ipynb```
+- gpu
+- ```docker exec -ti <container> bash; jupyter trust *.ipynb```
+
 # jupyter-lab-server
 This is my environment for playing with ML/RL using PyTorch, jupyter-lab, and Anaconda.
 It also includes CUDA 10.0.
@@ -8,8 +44,7 @@ and the `requrements.txt` files.
 
 ## Requirements
 To set-up everything you need execute the following step:  
-1. Create projects directory: `/home/${USER}/projects`
-1. Configure your git - [add your name and email](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)  
+1. Create projects directory: `/home/${USER}/projects` 1. Configure your git - [add your name and email](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)  
    (docker requires `/home/${USER}/.gitconfig` directory)
 1. Configure your ssh key to use remote git services inside the container - [GitLab example](https://docs.gitlab.com/ee/ssh/)  
    (docker requires `/home/${USER}/.ssh` directory)

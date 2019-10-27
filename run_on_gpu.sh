@@ -1,2 +1,2 @@
 #!/bin/bash
-docker run -p 8889:8889 --gpus all -it -v /home/jacek/projects:/projects/ -v /home/jacek/.gitconfig:/root/.gitconfig -v /home/jacek/.ssh:/root/.ssh -v jupyter-gpu-config:/root/.jupyter/ jacekplocharczyk/jupyter:cuda
+docker run -p 8889:8889 --gpus all -it -v /home/jakkrit/Desktop/jupyter-lab-server/fastai/nbs/dl1:/projects/fastai/dl1 -v /home/jakkrit/.gitconfig:/root/.gitconfig -v /home/jakkrit/.ssh:/root/.ssh -v jupyter-gpu-config:/root/.jupyter/ ppsmart/jupyterlab-torch-fastai:latest

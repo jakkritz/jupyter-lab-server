@@ -1,0 +1,44 @@
+debug = true
+
+logLevel = "INFO" #DEBUG, INFO, WARN, ERROR, FATAL, PANIC
+InsecureSkipVerify = true
+defaultEntryPoints = ["https", "http"]
+
+[api]
+  entryPoint = "traefik"
+  dashboard = true
+  address = ":8080"
+  usersFile = ".htpasswd"
+
+# Force HTTPS
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+    [entryPoints.http.redirect]
+    entryPoint = "https"
+  [entryPoints.https]
+  address = ":443"
+#    [entryPoints.https.auth.basic]
+#    usersFile = "/shared/.htpasswd"  
+    [entryPoints.https.tls]
+
+# Let's encrypt configuration
+[acme]
+email = "jakkrit@ppsmartbot.com"
+storage="acme.json"
+entryPoint = "https"
+onHostRule = true
+  [acme.httpChallenge]
+  entryPoint = "http"
+[[acme.domains]]
+  main = "ppsmartproduct.com"
+   
+# Connection to docker host system (docker.sock)
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "ppsmartproduct.com"
+watch = true
+# This will hide all docker containers that don't have explicitly  
+# set label to "enable"
+exposedbydefault = true
+network = "traefik_proxy"
