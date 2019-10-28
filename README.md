@@ -16,7 +16,11 @@ or create volume by running
      apt-get update && apt-get upgrade --yes
 ```
 
-3. Clone [fastai repo](https://github.com/Paperspace/fastai-docker/tree/master/fastai-v3)
+3. Clone or subtree or submodule add [fastai repo](https://github.com/Paperspace/fastai-docker/tree/master/fastai-v3)
+- ```git subtree add --prefix fastai git@github.com:fastai/course-v3.git master --squash
+```
+- ```git subtree pull --prefix fastai git@github.com:fastai/course-v3.git master --squash
+```
 
 4. Run JupyterLab by
 ```http://jupyter.localhost```
@@ -33,6 +37,29 @@ or create volume by running
 - ```docker-compose exec jupyter-lab bash; jupyter trust *.ipynb```
 - gpu
 - ```docker exec -ti <container> bash; jupyter trust *.ipynb```
+
+7. If you got error message about folder doesn't exist, just exec the container and mkdir.
+```
+Generating grammar tables from /root/anaconda3/lib/python3.7/site-packages/blib2to3/Grammar.txt
+Writing grammar tables to /root/.cache/black/19.3b0/Grammar3.7.4.final.0.pickle
+Writing failed: [Errno 2] No such file or directory: '/root/.cache/black/19.3b0/tmpo3oi6es0'
+Generating grammar tables from /root/anaconda3/lib/python3.7/site-packages/blib2to3/PatternGrammar.txt
+Writing grammar tables to /root/.cache/black/19.3b0/PatternGrammar3.7.4.final.0.pickle
+Writing failed: [Errno 2] No such file or directory: '/root/.cache/black/19.3b0/tmpuz4w7sgr'
+```
+
+``` mkdir -p /root/.cache/black/19.3b0
+```
+
+8. You can install jupyter extensions like so.
+```
+docker exec <container_id> jupyter labextension install jupyterlab_vim
+```
+
+9. If you want to keep using the same container so you don't have to sign the notebooks, creat a missing folder, and etc, don't run ```./run_on_gpu``` script. You can simply ```docker start <container_id>```
+
+
+# Original Readme
 
 # jupyter-lab-server
 This is my environment for playing with ML/RL using PyTorch, jupyter-lab, and Anaconda.
