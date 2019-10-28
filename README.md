@@ -33,30 +33,17 @@ or create volume by running
 - ```http://localhost:8889```
 
 6. Dirty trust noteboks
-- docker-compose
+- docker-compose version
 - ```docker-compose exec jupyter-lab bash; jupyter trust *.ipynb```
-- gpu
+- gpu version
 - ```docker exec -ti <container> bash; jupyter trust *.ipynb```
 
-7. If you got error message about folder doesn't exist, just exec the container and mkdir.
-```
-Generating grammar tables from /root/anaconda3/lib/python3.7/site-packages/blib2to3/Grammar.txt
-Writing grammar tables to /root/.cache/black/19.3b0/Grammar3.7.4.final.0.pickle
-Writing failed: [Errno 2] No such file or directory: '/root/.cache/black/19.3b0/tmpo3oi6es0'
-Generating grammar tables from /root/anaconda3/lib/python3.7/site-packages/blib2to3/PatternGrammar.txt
-Writing grammar tables to /root/.cache/black/19.3b0/PatternGrammar3.7.4.final.0.pickle
-Writing failed: [Errno 2] No such file or directory: '/root/.cache/black/19.3b0/tmpuz4w7sgr'
-```
-
-``` mkdir -p /root/.cache/black/19.3b0
-```
-
-8. You can install jupyter extensions like so.
+7. You can install jupyter extensions like so.
 ```
 docker exec <container_id> jupyter labextension install jupyterlab_vim
 ```
 
-9. If you want to keep using the same container so you don't have to sign the notebooks, creat a missing folder, and etc, don't run ```./run_on_gpu``` script. You can simply ```docker start <container_id>```
+8. If you want to keep using the same container so you don't have to sign the notebooks, creat a missing folder, and etc, don't run ```./run_on_gpu``` script. You can simply ```docker start <container_id>```
 
 
 # Original Readme
@@ -73,6 +60,7 @@ and the `requrements.txt` files.
 To set-up everything you need execute the following step:  
 1. Create projects directory: `/home/${USER}/projects` 1. Configure your git - [add your name and email](https://git-scm.com/book/en/v2/Getting-Started-First-Time-Git-Setup)  
    (docker requires `/home/${USER}/.gitconfig` directory)
+
 1. Configure your ssh key to use remote git services inside the container - [GitLab example](https://docs.gitlab.com/ee/ssh/)  
    (docker requires `/home/${USER}/.ssh` directory)
 

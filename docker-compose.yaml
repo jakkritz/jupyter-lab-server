@@ -10,12 +10,15 @@ networks:
 
 services:
   jupyter-lab:
+      # image: ppsmart/jupyterlab-torch-fastai:latest
     build:
       context: .
       dockerfile: Dockerfile
     restart: always
     volumes:
       - /home/${USER}/Desktop/jupyter-lab-server/fastai/nbs/dl1:/projects/fastai/dl1
+      - /home/${USER}/Desktop/jupyter-lab-server/fastai/nbs/dl2:/projects/fastai/dl2
+      - /home/${USER}/Desktop/jupyter-lab-server/projects/scratch:/projects/scratch
       - /home/${USER}/.kaggle/:/root/.kaggle/
       - /home/${USER}/.ssh:/root/.ssh
       - /home/${USER}/.gitconfig:/root/.gitconfig
