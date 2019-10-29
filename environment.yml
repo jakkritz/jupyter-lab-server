@@ -11,6 +11,7 @@ dependencies:
   - flake8-black
   - jupyterlab
   - jupyterlab_code_formatter
+  - jupyterlab_vim
   - nodejs
   - pyglet
   - python=3.7

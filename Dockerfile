@@ -25,10 +25,10 @@ RUN pip install -r requirements.txt
 RUN jupyter labextension install @ryantam626/jupyterlab_code_formatter && \
     jupyter serverextension enable --py jupyterlab_code_formatter && jupyter labextension install jupyterlab_vim
 
-RUN mkdir /projects && mkdir -p /projects/fastai/dl1 && mkdir -p /projects/fastai/dl2 && mkdir -p /projects/scratch && mkdir /root/.kaggle && mkdir /root/.ssh && mkdir -p /root/.cache/black/19.3b0
+RUN mkdir /projects && mkdir -p /projects/fastai/dl1 && mkdir -p /projects/fastai/dl2 && mkdir -p /projects/notebooks && mkdir /root/.kaggle && mkdir /root/.ssh && mkdir -p /root/.cache/black/19.3b0
 
 WORKDIR /projects
 
 ENV SHELL="/bin/bash"
 
-ENTRYPOINT xvfb-run -s "-screen 0 1400x900x24" jupyter-lab --ip 0.0.0.0 --port 8889 --allow-root --LabApp.token='' --no-browser
+ENTRYPOINT xvfb-run -s "-screen 0 1400x900x24" jupyter-lab --ip 0.0.0.0 --port 8889 --allow-root --LabApp.token=''
