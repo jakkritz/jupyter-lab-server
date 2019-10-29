@@ -16,7 +16,7 @@ or create volume by running
      apt-get update && apt-get upgrade --yes
 ```
 
-3. Clone or subtree or submodule add [fastai repo](https://github.com/Paperspace/fastai-docker/tree/master/fastai-v3)
+3. Clone or subtree or submodule add fastai repo
 - ```git subtree add --prefix fastai git@github.com:fastai/course-v3.git master --squash
 ```
 - ```git subtree pull --prefix fastai git@github.com:fastai/course-v3.git master --squash
@@ -30,7 +30,7 @@ or create volume by running
 # change directory as needed
 ```
 - access JupyterLab by
-- ```http://localhost:8889```
+- ```http://localhost:8888```
 
 6. Dirty trust noteboks
 - docker-compose version
