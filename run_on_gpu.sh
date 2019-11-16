@@ -1,5 +1,5 @@
 #!/bin/bash
-docker run -p 8888:8888 --restart always --gpus all -it \
+docker run -p 8888:8888 --gpus all -it \
     -v /home/jakkrit/Desktop/jupyter-lab-server/projects:/projects \
     -v /home/jakkrit/.gitconfig:/root/.gitconfig \
     -v /home/jakkrit/.ssh:/root/.ssh \
